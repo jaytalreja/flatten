@@ -282,10 +282,14 @@ def flatten_preserve_lists(nested_dict, separator="_",
         cur_depth -= 1
 
     _flatten(nested_dict, None)
-
+    return flattened_dict 
+    
+    '''Commenting this part out for our own needs. We have integers in our column names and the logic below adds unnecessary unique columns with value "None"
+    '''
+  	
     # get unique column names, without the integers
     # TODO: potential issue: what if column names have digits naturally?
-    reskeys = list(flattened_dict.keys())
+    '''reskeys = list(flattened_dict.keys())
     unique_integers = list(set([separator + char for key
                                 in reskeys for char in key if char.isdigit()]))
     regex = '|'.join(unique_integers)
@@ -303,7 +307,7 @@ def flatten_preserve_lists(nested_dict, separator="_",
                          max_depth_inner=max_depth)
 
     return list_prebuilt_flattened_dict['0']
-
+    '''
 
 def _unflatten_asserts(flat_dict, separator):
     assert isinstance(flat_dict, dict), "un_flatten requires dictionary input"
